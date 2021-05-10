@@ -54,7 +54,8 @@
 (defn- set-volume
   [device-name new-volume-value]
   (println (str "changing to >> " new-volume-value))
-  (sh "bash" "-c" (str "pactl set-source-volume" " " device-name " " new-volume-value "%"))
+  (sh "bash" "-c" (str "pactl set-source-mute" " " device-name " " "0"))
+  (sh "bash" "-c" (str "pactl set-source-volume" " " device-name" " new-volume-value "%"))
   (println (str "changed to >> " (get-device-volume-percentage device-name)))
   (get-device-volume-percentage device-name))
 
